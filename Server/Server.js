@@ -4,10 +4,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 const UserRouter = require("./Routes/UserRouter");
+const MovieRouter = require("./Routes/MovieRoutes");
 
 const app = express();
 app.use(express.json());
 app.use("/api/users", UserRouter);
+app.use("/api/movie", MovieRouter);
 
 mongoose.set("strictQuery", true);
 

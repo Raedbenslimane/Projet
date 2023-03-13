@@ -1,7 +1,6 @@
-const { hash } = require("bcryptjs");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const user = require("../Models/UserModel");
+const User = require("../Models/UserModel");
 const jwt = require("jsonwebtoken");
 
 const Register = async (req, res) => {
@@ -11,7 +10,7 @@ const Register = async (req, res) => {
       return res.status(402).json({ errors: errors.mapped() });
     }
     const { name, age, email, password } = req.body;
-    const found = await User.findOne({ email });
+    const found = await User.find({ email });
     if (found) {
       return res.status(401).json({ message: "you have already registered" });
     }
@@ -35,7 +34,7 @@ const Login = async (req, res) => {
       return res.status(402).json({ errors: errors.mapped() });
     }
     const { email, password } = req.body;
-    const isfound = await User.findOne({ email });
+    const isfound = await User.find({ email });
     if (!isfound) {
       return res.status(402).json({ message: "you have to register before" });
     }

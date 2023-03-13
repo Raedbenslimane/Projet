@@ -40,6 +40,7 @@ const UserSlice = createSlice({
     token: localStorage.getItem("token"),
     isAuth: Boolean(localStorage.getItem("isAuth")),
   },
+
   reducers: {
     LogOut: (state) => {
       localStorage.clear();
