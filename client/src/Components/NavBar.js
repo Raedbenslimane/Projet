@@ -16,23 +16,32 @@ const NavBar = () => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
-              Register
-            </Nav.Link>
-            <Nav.Link as={Link} to="/Login">
-              Login
-            </Nav.Link>
-            <Button
-              onClick={() => {
-                dispatch(LogOut());
-              }}
-            >
-              {" "}
-              LogOut
-            </Button>
-            <Nav.Link as={Link} to="/Add">
-              AddMovie
-            </Nav.Link>
+            {isAuth ? (
+              <>
+                {" "}
+                <Button
+                  onClick={() => {
+                    dispatch(LogOut());
+                  }}
+                >
+                  {" "}
+                  LogOut
+                </Button>
+              </>
+            ) : (
+              <>
+                {" "}
+                <Nav.Link as={Link} to="/">
+                  Register
+                </Nav.Link>
+                <Nav.Link as={Link} to="/Login">
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/Add">
+                  AddMovie
+                </Nav.Link>{" "}
+              </>
+            )}
           </Nav>
         </Container>
       </Navbar>
