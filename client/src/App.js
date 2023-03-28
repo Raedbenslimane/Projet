@@ -17,6 +17,7 @@ function App() {
         <Route index element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Add" element={<Add />} />
+        <Route path="/MovieCard" element={<MovieCard />} />
         <Route
           path="/Profile"
           element={

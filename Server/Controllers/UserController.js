@@ -9,22 +9,25 @@ const Register = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(402).json({ errors: errors.mapped() });
     }
-    const { name, age, email, password } = req.body;
-    const found = await User.find({ email });
+    const { name, age, email, password, Role } = req.body;
+    const found = await User.findOne({ email });
+
     if (found) {
       return res.status(401).json({ message: "you have already registered" });
     }
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+    console.log(hashedPassword);
     const newUser = await User.create({
       name,
       age,
       email,
       password: hashedPassword,
+      Role,
     });
     res.status(200).json(newUser);
   } catch (error) {
-    res.status(500);
+    res.status(500).json({ error: error });
   }
 };
 const Login = async (req, res) => {

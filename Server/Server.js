@@ -5,9 +5,15 @@ const dotenv = require("dotenv");
 dotenv.config();
 const UserRouter = require("./Routes/UserRouter");
 const MovieRouter = require("./Routes/MovieRoutes");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 app.use(express.json());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 app.use("/api/users", UserRouter);
 app.use("/api/movie", MovieRouter);
 

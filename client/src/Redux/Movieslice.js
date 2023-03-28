@@ -56,6 +56,7 @@ const movieslice = createSlice({
   name: "movie",
   initialState: {
     movie: {},
+    movies: [],
 
     isLoading: false,
     msg: null,
@@ -78,7 +79,7 @@ const movieslice = createSlice({
     },
     [getall.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.movie = action.payload;
+      state.movies = action.payload;
     },
     [getall.rejected]: (state, action) => {
       state.ERRORS = action.payload;

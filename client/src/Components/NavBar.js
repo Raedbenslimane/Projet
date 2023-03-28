@@ -39,6 +39,9 @@ const NavBar = () => {
                 </Nav.Link>
                 <Nav.Link as={Link} to="/Add">
                   AddMovie
+                </Nav.Link>
+                <Nav.Link as={Link} to="/MovieCard">
+                  MovieList
                 </Nav.Link>{" "}
               </>
             )}
