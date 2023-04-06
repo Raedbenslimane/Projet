@@ -7,9 +7,8 @@ const {
 } = require("../Controllers/Moviecontroller");
 const movie = require("../Models/MovieModel");
 const router = express.Router();
-const picture = require("../Controllers/AddPict");
 
-router.post("/", addmovie, picture.AddPic);
+router.post("/", addmovie);
 
 router.get("/", GetAllMovies);
 

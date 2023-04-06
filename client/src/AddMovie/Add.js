@@ -10,15 +10,27 @@ const Add = () => {
   const HandleChange = (e) => {
     setnewMovie({ ...newMovie, [e.target.name]: e.target.value });
   };
+  const [image, setImage] = useState();
+  const Imagechange = (e) => {
+    setImage(e.target.files);
+  };
   const dispatch = useDispatch();
   const Add = (e) => {
     e.preventDefault();
-    dispatch(AddMovie(newMovie));
+
+    const MovieData = new FormData();
+    MovieData.append("name", newMovie.name);
+    MovieData.append("description", newMovie.description);
+    MovieData.append("categories", newMovie.categories);
+    MovieData.append("url", newMovie.url);
+    MovieData.append("Img", image);
+    dispatch(AddMovie(MovieData));
   };
   return (
-    <div>
-      <InputGroup className="mb-3">
+    <div className="AddM">
+      <InputGroup style={{ width: "700px" }} className="mb-3">
         <Form.Control
+          style={{ width: "500px" }}
           onChange={HandleChange}
           name="name"
           aria-label="Example text with button addon"
@@ -26,23 +38,34 @@ const Add = () => {
         />
       </InputGroup>
 
-      <InputGroup className="mb-3">
+      <InputGroup style={{ width: "700px" }} className="mb-3">
         <Form.Control
+          style={{ width: "500px" }}
           onChange={HandleChange}
           name="description"
           aria-describedby="basic-addon2"
         />
       </InputGroup>
 
-      <InputGroup className="mb-3">
+      <InputGroup style={{ width: "700px" }} className="mb-3">
         <Form.Control
+          style={{ width: "500px" }}
           onChange={HandleChange}
           name="categories"
           aria-label="Example text with two button addons"
         />
       </InputGroup>
-
-      <InputGroup>
+      <InputGroup style={{ width: "700px" }} className="mb-3">
+        <Form.Control
+          type="file"
+          style={{ width: "500px" }}
+          onChange={Imagechange}
+          name="Img"
+          aria-label="Example text with button addon"
+          aria-describedby="basic-addon1"
+        />
+      </InputGroup>
+      <InputGroup style={{ width: "700px" }}>
         <Form.Control
           onChange={HandleChange}
           name="url"
@@ -50,7 +73,7 @@ const Add = () => {
         />
 
         <Button onClick={Add} variant="outline-secondary">
-          Button
+          Add
         </Button>
       </InputGroup>
     </div>

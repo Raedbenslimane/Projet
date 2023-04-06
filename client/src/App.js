@@ -19,7 +19,7 @@ function App() {
         <Route path="/Add" element={<Add />} />
         <Route path="/MovieCard" element={<MovieCard />} />
         <Route
-          path="/Profile"
+          path="/MovieCard"
           element={
             <PrivateRoute>
               <MovieCard />

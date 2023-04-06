@@ -26,7 +26,10 @@ const NavBar = () => {
                 >
                   {" "}
                   LogOut
-                </Button>
+                </Button>{" "}
+                <Nav.Link as={Link} to="/MovieCard">
+                  MovieCard
+                </Nav.Link>
               </>
             ) : (
               <>
@@ -37,14 +40,11 @@ const NavBar = () => {
                 <Nav.Link as={Link} to="/Login">
                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/Add">
-                  AddMovie
-                </Nav.Link>
-                <Nav.Link as={Link} to="/MovieCard">
-                  MovieList
-                </Nav.Link>{" "}
               </>
             )}
+            <Nav.Link as={Link} to="/Add">
+              AddMovie
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>

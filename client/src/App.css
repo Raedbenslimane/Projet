@@ -72,6 +72,42 @@
   top: 60%;
   left: 45%;
 }
+#D {
+  position: absolute;
+  top: 92%;
+  left: 62%;
+}
+#email {
+  position: absolute;
+  top: 40%;
+  left: 32%;
+}
+#lab {
+  position: absolute;
+  top: 46%;
+  left: 32%;
+}
+#pass {
+  position: absolute;
+  top: 50%;
+  left: 32%;
+}
+#labe {
+  position: absolute;
+  top: 56%;
+  left: 32%;
+}
+#btt {
+  position: absolute;
+  top: 60%;
+  left: 32%;
+}
+.AddM {
+  position: absolute;
+  top: 39%;
+  left: 20%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

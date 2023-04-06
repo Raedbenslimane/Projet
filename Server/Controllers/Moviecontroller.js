@@ -1,8 +1,19 @@
 const movie = require("../Models/MovieModel");
+const cloudinary = require("./Cloudinary");
 
 const addmovie = async (req, res) => {
   try {
-    const newMovie = await movie.create(req.body);
+    const { name, description, categories, url } = req.body;
+    const savedImage = await cloudinary.uploader.upload(
+      req.files.Img.tempFilePath
+    );
+    const newMovie = await movie.create({
+      name,
+      description,
+      categories,
+      url,
+      Img: { public_id: savedImage.public_id, imgUrl: savedImage.url },
+    });
     res.json({ newMovie, msg: "Movie Added Successfully" });
   } catch (error) {
     console.log(error);

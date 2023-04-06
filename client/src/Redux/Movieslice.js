@@ -18,6 +18,7 @@ export const DeleteMovie = createAsyncThunk(
   async (id, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await axios.delete(`/api/movie/${id}`, DeleteMovie);
+      dispatch(getall());
       return data;
     } catch (error) {
       rejectWithValue(error.response.data.message);
@@ -29,13 +30,11 @@ export const updatemovie = createAsyncThunk(
   "movie/updatemovie",
   async (updatem, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await axios.put(
-        `/api/movie/${updatem._id}`,
-        updatemovie
-      );
+      const { data } = await axios.put(`/api/movie/${updatem._id}`, updatem);
+      dispatch(getall());
       return data;
     } catch (error) {
-      rejectWithValue(error.response.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -89,11 +88,11 @@ const movieslice = createSlice({
     },
     [DeleteMovie.fulfilled]: (state, { type, payload }) => {
       state.isLoading = false;
-      state.movie = state.movie.filter(
+      state.movies = state.movies.filter(
         (movie) => movie._id !== payload.deletedMovie._id
       );
     },
-    [DeleteMovie.rejected]: (state, { type, payload }) => {
+    [DeleteMovie.rejected]: (state, { payload }) => {
       state.ERRORS = payload;
     },
     [updatemovie.pending]: (state) => {
@@ -101,8 +100,8 @@ const movieslice = createSlice({
     },
     [updatemovie.fulfilled]: (state, { type, payload }) => {
       state.isLoading = false;
-      state.movie = state.movie.map((movie) =>
-        movie._id == payload.id ? { ...movie, ...payload } : movie
+      state.movies = state.movies.map((el) =>
+        el._id == payload._id ? { ...el, ...payload } : el
       );
     },
     [updatemovie.rejected]: (state, { type, payload }) => {
