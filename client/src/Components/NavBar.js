@@ -16,32 +16,34 @@ const NavBar = () => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">
-            {isAuth ? (
-              <>
-                {" "}
-                <Button
-                  onClick={() => {
-                    dispatch(LogOut());
-                  }}
-                >
+            <>
+              {isAuth ? (
+                <>
                   {" "}
-                  LogOut
-                </Button>{" "}
-                <Nav.Link as={Link} to="/MovieCard">
-                  MovieCard
-                </Nav.Link>
-              </>
-            ) : (
-              <>
-                {" "}
-                <Nav.Link as={Link} to="/">
-                  Register
-                </Nav.Link>
-                <Nav.Link as={Link} to="/Login">
-                  Login
-                </Nav.Link>
-              </>
-            )}
+                  <Nav.Link as={Link} to="/MovieCard">
+                    MovieCard
+                  </Nav.Link>{" "}
+                  <Button
+                    onClick={() => {
+                      dispatch(LogOut());
+                    }}
+                  >
+                    LogOut
+                  </Button>{" "}
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Nav.Link as={Link} to="/">
+                    Register
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/Login">
+                    Login
+                  </Nav.Link>{" "}
+                </>
+              )}
+            </>
+
             <Nav.Link as={Link} to="/Add">
               AddMovie
             </Nav.Link>

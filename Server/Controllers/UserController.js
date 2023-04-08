@@ -37,7 +37,7 @@ const Login = async (req, res) => {
       return res.status(402).json({ errors: errors.mapped() });
     }
     const { email, password } = req.body;
-    const isfound = await User.find({ email });
+    const isfound = await User.findOne({ email });
     if (!isfound) {
       return res.status(402).json({ message: "you have to register before" });
     }

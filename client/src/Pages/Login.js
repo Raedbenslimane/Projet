@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const isAuth = useSelector((state) => state.User.isAuth);
   useEffect(() => {
-    isAuth ? navigate("/Profile") : navigate("/Login");
+    isAuth ? navigate("/MovieCard") : navigate("/Login");
   }, [isAuth]);
   return (
     <div>
