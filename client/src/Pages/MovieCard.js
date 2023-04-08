@@ -8,6 +8,7 @@ import Updatemovies from "../Components/Updatemovie";
 
 const MovieCard = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.User.user);
 
   useEffect(() => {
     dispatch(getall());
@@ -39,14 +40,19 @@ const MovieCard = () => {
                 <Card.Text>{el.description}</Card.Text>
                 <Card.Text>{el.categories}</Card.Text>
                 <Link to={`${el.url}`}>WATCH NOW</Link>
-                <Updatemovies el={el} />
-                <Button
-                  id="D"
-                  variant="primary"
-                  onClick={() => dispatch(DeleteMovie(el._id))}
-                >
-                  Delete
-                </Button>
+                {user?.Role == "admin" && (
+                  <>
+                    {" "}
+                    <Updatemovies el={el} />
+                    <Button
+                      id="D"
+                      variant="primary"
+                      onClick={() => dispatch(DeleteMovie(el._id))}
+                    >
+                      Delete
+                    </Button>{" "}
+                  </>
+                )}
               </Card.Body>
             </Card>
           </Col>

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { LogOut } from "../Redux/UserSlice";
 
 const NavBar = () => {
+  const user = useSelector((state) => state.User.user);
   const isAuth = useSelector((state) => state.User.isAuth);
   const dispatch = useDispatch();
 
@@ -29,7 +30,15 @@ const NavBar = () => {
                     }}
                   >
                     LogOut
-                  </Button>{" "}
+                  </Button>
+                  {user?.Role == "admin" && (
+                    <>
+                      {" "}
+                      <Nav.Link as={Link} to="/Add">
+                        AddMovie
+                      </Nav.Link>{" "}
+                    </>
+                  )}
                 </>
               ) : (
                 <>
@@ -39,14 +48,10 @@ const NavBar = () => {
                   </Nav.Link>
                   <Nav.Link as={Link} to="/Login">
                     Login
-                  </Nav.Link>{" "}
+                  </Nav.Link>
                 </>
               )}
             </>
-
-            <Nav.Link as={Link} to="/Add">
-              AddMovie
-            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
